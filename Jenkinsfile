@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+	}
+
     stages {
         stage ('Clone') {
             steps {
@@ -23,20 +27,32 @@ pipeline {
             }
         }
 
-        stage ('Push image to Docker Hub') {
-            steps {
-                rtDockerPush(
-                    image: 'elchananmizrachi/2bcloud:' + "${env.BUILD_ID}",
-                    properties: 'project-name=2bcloud;status=stable'
-                )
-            }
-        }
 
+
+		stage('Login to Docker Hub') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push image to Docker Hub') {
+
+			steps {
+				sh 'docker push elchananmizrachi/2bcloud:' + "${env.BUILD_ID}'
+			}
+		}
 
         stage ('K8s deployment') {
             steps {
                 kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "mykubeconfig")
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker logout'
         }
     }
 }
