@@ -24,7 +24,7 @@ pipeline {
         stage ('Build docker image') {
             steps {
                 script {
-                    docker.build registry + "${env.BUILD_ID}"
+                    dockerImage = docker.build registry + "${env.BUILD_ID}"
                 }
             }
         }
