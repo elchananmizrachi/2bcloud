@@ -1,0 +1,18 @@
+{
+  "name": "2bcloud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "myapp.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elchananmizrachi/2bcloud.git"
+  },
+  "author": "Elchanan Mizrahi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elchananmizrachi/2bcloud/issues"
+  },
+  "homepage": "https://github.com/elchananmizrachi/2bcloud#readme"
+}
