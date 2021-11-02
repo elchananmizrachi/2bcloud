@@ -3,6 +3,8 @@ pipeline {
         registry = "elchananmizrachi/2bcloud"
         registryCredential = 'dockerhub_id'
         dockerImage = ''
+        }
+
     agent any
 
     stages {
@@ -28,12 +30,15 @@ pipeline {
         }
 
         stage ('Push image to Docker Hub') {
+
             steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                    script {
+                        docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }    
+                }
             }
-        }
+        }    
 
         stage ('K8s deployment') {
             steps {
