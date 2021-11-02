@@ -6,6 +6,6 @@ This assignment attended to parctice a simple form of application deployment.
 2. Dockerfile for application packing
 3. Basic aml for deployment over K8s
 4. Jenkinsfile pipeline for image builds, each build with the job number tag
-5. DockerHub as DOkcer registry 
+5. DockerHub as Dokcer registry 
 
 
