@@ -1,9 +1,9 @@
 pipeline {
+        environment {
+        registry = "elchananmizrachi/2bcloud"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
     agent any
-
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
-	}
 
     stages {
         stage ('Clone') {
@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        
+
         stage ('Change version tag number') {
             steps {
                 sh "sed -ir 's/__TAG__/${env.BUILD_ID}/g' 2bcloud.yaml"
@@ -20,35 +20,24 @@ pipeline {
         }
 
         stage ('Build docker image') {
-		
             steps {
-		    
                 script {
-			
                     docker.build("elchananmizrachi/2bcloud:${env.BUILD_ID}")
                 }
             }
         }
 
-
-	stage('Login to Docker Hub') {
-
-		steps {
-			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-	stage('Push image to Docker Hub') {
-
-		steps {
-			sh 'docker push elchananmizrachi/2bcloud: + "${env.BUILD_ID}"'
-			}
-		}
+        stage ('Push image to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                )
+            }
+        }
 
         stage ('K8s deployment') {
-		
             steps {
-		    
                 kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "mykubeconfig")
             }
         }
