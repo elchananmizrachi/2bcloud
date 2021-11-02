@@ -24,7 +24,7 @@ pipeline {
         stage ('Build docker image') {
             steps {
                 script {
-                    docker.build("elchananmizrachi/2bcloud:${env.BUILD_ID}")
+                    docker.build(registry + "${env.BUILD_ID}"
                 }
             }
         }
