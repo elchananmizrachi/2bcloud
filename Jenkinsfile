@@ -39,7 +39,7 @@ pipeline {
 		stage('Push image to Docker Hub') {
 
 			steps {
-				sh 'docker push elchananmizrachi/2bcloud:' + "${env.BUILD_ID}'
+				sh 'docker push elchananmizrachi/2bcloud: + "${env.BUILD_ID}"'
 			}
 		}
 
