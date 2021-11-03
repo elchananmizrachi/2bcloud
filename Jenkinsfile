@@ -44,6 +44,7 @@ pipeline {
             }
         }    
 
+        stage ('K8s deployment') {
             steps {
                 script{
                    def image_id = registry + "${env.BUILD_ID}"
@@ -53,7 +54,7 @@ pipeline {
                 }
             } 
         }   
-    
+    }
 }
 
 
