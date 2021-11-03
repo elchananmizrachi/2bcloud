@@ -5,7 +5,9 @@ pipeline {
         dockerImage = ''
         }
 
-    agent any
+    agent {
+            any { 
+              args '-u root:sudo -v /var/lib/jenkins/workspace/2bcloud-assignment'
 
     stages {
         stage ('Clone') {
