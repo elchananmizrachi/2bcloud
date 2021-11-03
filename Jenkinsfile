@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script{
                    def image_id = registry + "${env.BUILD_ID}"
-                   sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
+                   sh "ansible-playbook  2bcloud.yaml --extra-vars \"image_id=${image_id}\""
                 }
             }
         }
