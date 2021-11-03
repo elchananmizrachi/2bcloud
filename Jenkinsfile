@@ -44,10 +44,19 @@ pipeline {
             }
         }    
 
+
         stage ('K8s deployment') {
             steps {
-                kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "mykubeconfig")
+                script{
+                   def image_id = registry + "${env.BUILD_ID}"
+                   sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
+                }
             }
         }
     }
 }
+
+
+
+
+       
