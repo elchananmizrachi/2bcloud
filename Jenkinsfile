@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script{
                    def image_id = registry + "${env.BUILD_ID}"
-                   sh "kubectl apply -f  2bcloud.yaml --extra-vars \"image_id=${image_id}\""
+                   sh "kubectl apply -f  2bcloud.yaml"
                 }
             }
         }
