@@ -46,12 +46,7 @@ pipeline {
 
         stage ('K8s deployment') {
             steps {
-                script{
-                   def image_id = registry + "${env.BUILD_ID}"
-                   sshagent(['k8s_cluster']) {
-                           sh "kubectl apply -f  2bcloud.yaml"
-                   }        
-                }
+                kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "mykubeconfig")
             }
         }       
     }
