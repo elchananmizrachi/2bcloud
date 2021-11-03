@@ -46,7 +46,7 @@ pipeline {
 
         stage ('K8s deployment') {
             steps {
-                kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "mykubeconfig")
+                kubernetesDeploy(configs: "2bcloud.yaml", kubeconfigId: "kubernetes")
             }
         }       
     }
