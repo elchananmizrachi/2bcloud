@@ -1,6 +1,6 @@
 # 2bcloud
 
-This assignment attended to parctice a simple form of application deployment.
+This assignment attended to practice a simple form of application deployment.
 
 1. Simple application writen in nodejs that prints "Hello World" while accessing on HTTP
 2. Dockerfile for application packing
