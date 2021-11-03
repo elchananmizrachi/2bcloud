@@ -28,7 +28,7 @@ pipeline {
         stage ('Build docker image') {
             steps {
                 script {
-                    dockerImage = docker.build registry + "${env.BUILD_ID}"
+                    dockerImage = docker.build registry + "${env.BUILD_ID}"      
                 }
             }
         }
@@ -48,7 +48,9 @@ pipeline {
             steps {
                 script{
                    def image_id = registry + "${env.BUILD_ID}"
-                   sh "kubectl apply -f  2bcloud.yaml"
+                   sshagent(['k8s_cluster']) {
+                           sh "kubectl apply -f  2bcloud.yaml"
+                   }        
                 }
             }
         }       
