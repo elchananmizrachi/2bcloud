@@ -49,7 +49,7 @@ pipeline {
 
             steps {
 
-                 sh ' /usr/local/sbin/kubectl/kubectl apply -f 2bcloud.yaml'
+                 sh 'kubectl apply -f 2bcloud.yaml'
            }
         }
     }        
