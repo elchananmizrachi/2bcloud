@@ -15,9 +15,6 @@ spec:
         app: node
     spec:
       containers:
-      - command:
-         - kubelet
-         - --anonymous-auth=false
       - name: node
         image: elchananmizrachi/2bcloud:__TAG__
         imagePullPolicy: Always
