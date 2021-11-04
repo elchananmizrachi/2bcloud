@@ -44,16 +44,13 @@ pipeline {
             }
         }    
 
+
         stage ('K8s deployment') {
+
             steps {
-                sh 'envsubst < ${WORKSPACE}/2bcloud.yaml | kubectl apply -f -'
-                }
-            }   
-        }   
-    }
-}
 
-
-
-
-       
+                 sh 'envsubst < ${WORKSPACE}/2bcloud.yaml | kubectl apply -f -'
+           }
+        }
+    }        
+}    
