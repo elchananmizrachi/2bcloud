@@ -49,7 +49,7 @@ pipeline {
 
             steps {
 
-                 sh 'envsubst < ${WORKSPACE}/2bcloud.yaml | kubectl apply -f -'
+                 sh 'envsubst < ${WORKSPACE}/2bcloud.yaml | kubectl apply -f --username=jenkins --password=jenkins'
            }
         }
     }        
