@@ -49,7 +49,7 @@ pipeline {
 
             steps {
 
-                 sh 'envsubst < ${WORKSPACE}/2bcloud.yaml | /usr/local/sbin/kubectl/kubectl apply -f '
+                 sh ' /usr/local/sbin/kubectl/kubectl apply -f 2bcloud.yaml'
            }
         }
     }        
