@@ -48,7 +48,8 @@ pipeline {
         stage ('K8s deployment') {
 
             steps {
-
+                    
+                 sh 'kubectl version --kubeconfig ~/.kube/config"
                  sh 'kubectl apply -f 2bcloud.yaml'
            }
         }
