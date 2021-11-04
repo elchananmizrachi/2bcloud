@@ -49,7 +49,7 @@ pipeline {
 
             steps {
                     
-                 sh 'kubectl version --kubeconfig /home/elchanan/.kube/config'
+                 sh 'sudo -i'
                  sh 'kubectl apply -f 2bcloud.yaml'
            }
         }
