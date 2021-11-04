@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: elchananmizrachi/2bcloud:__TAG__
+        image: elchananmizrachi/2bcloud__TAG__:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
