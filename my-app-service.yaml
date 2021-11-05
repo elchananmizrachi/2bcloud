@@ -1,0 +1,15 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: my-app-service 
+spec:
+  type: LoadBalancer
+
+  selector:
+    app: node
+
+  ports:
+    - Protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
