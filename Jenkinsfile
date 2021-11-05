@@ -49,7 +49,7 @@ pipeline {
 
             steps {
                     
-                 sh 'sudo -i'
+                 sh 'kubectl apply -f my-app-service.yaml'
                  sh 'kubectl apply -f 2bcloud.yaml'
            }
         }
