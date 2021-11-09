@@ -1,27 +1,27 @@
 pipeline {
         environment {
-        registry = "elchananmizrachi/2bcloud"
+        registry = "elchananmizrachi/myapp"
         registryCredential = 'dockerhub_id'
         dockerImage = ''
         }
 
     agent {
             any { 
-              args '-u root:sudo -v /var/lib/jenkins/workspace/2bcloud-assignment'
+              args '-u root:sudo -v /var/lib/jenkins/workspace/myapp'
             }  
         }    
 
     stages {
         stage ('Clone') {
             steps {
-                git branch: 'master', url: "https://github.com/elchananmizrachi/2bcloud.git/"
+                git branch: 'master', url: "https://github.com/elchananmizrachi/basic-ci-pipeline.git/"
             }
         }
 
 
         stage ('Change version tag number') {
             steps {
-                sh "sed -ir 's/__TAG__/${env.BUILD_ID}/g' 2bcloud.yaml"
+                sh "sed -ir 's/__TAG__/${env.BUILD_ID}/g' my-app-deployment.yaml"
             }
         }
 
@@ -50,7 +50,7 @@ pipeline {
             steps {
                     
                  sh 'kubectl apply -f my-app-service.yaml'
-                 sh 'kubectl apply -f 2bcloud.yaml'
+                 sh 'kubectl apply -f my-app-deployment.yaml'
            }
         }
     }        
