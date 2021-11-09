@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 2bcloud
+  name: myapp
   labels:
     app: node
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: elchananmizrachi/2bcloud__TAG__:latest
+        image: elchananmizrachi/myapp__TAG__:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
